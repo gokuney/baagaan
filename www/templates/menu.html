@@ -1,0 +1,79 @@
+<ion-side-menus enable-menu-with-back-views="false">
+  <ion-side-menu-content>
+    <ion-nav-bar class="bar-dark">
+      <ion-nav-back-button>
+      </ion-nav-back-button>
+
+      <ion-nav-buttons side="left">
+        <button class="button ink button-icon button-clear ion-android-menu" menu-toggle="left"></button>
+      </ion-nav-buttons>
+    </ion-nav-bar>
+    <ion-nav-view name="menuContent"></ion-nav-view>
+  </ion-side-menu-content>
+
+  <ion-side-menu side="left">
+    <ion-header-bar class="dark-bg">
+      <div>
+        <span menu-close ng-if="!user.isLogin" ui-sref="app.login"><i class="lineicon lineicon-user"></i>  Sign In</span>
+        <span menu-close ng-if="user.isLogin"><i class="lineicon lineicon-user"></i>  {{user.username}}</span>
+        <span menu-close ng-if="user.isLogin" ng-click="doLogout()" class="pull-right ink">Logout</span>
+      </div>
+    </ion-header-bar>
+    <ion-content overflow-scroll="true">
+      <ion-list>
+        <ion-item menu-close ui-sref="app.dash" class="item item-icon-left ink">
+          <i class="icon lineicon lineicon-shop"></i>
+          Shop
+        </ion-item>
+        <ion-item menu-close ui-sref="app.blog" class="item item-icon-left ink">
+          <i class="icon lineicon lineicon-news"></i>
+          Blog
+        </ion-item>
+        <ion-item menu-close ui-sref="app.wish" class="item item-icon-left ink">
+          <i class="icon lineicon lineicon-heart"></i>
+          Wishlist
+        </ion-item>
+        <span ng-if="user.isLogin">
+        <ion-item menu-close ui-sref="app.orders" class="ink item-icon-left ink">
+          <i class="icon lineicon lineicon-wallet"></i>
+          My Orders
+        </ion-item>
+        </span>
+        <ion-item menu-close ui-sref="app.contact" class="ink item-icon-left ink">
+          <i class="icon lineicon lineicon-mail"></i>
+          Contact
+        </ion-item>
+        <ion-item menu-close ui-sref="app.faq" class="ink item-icon-left ink">
+          <i class="icon lineicon lineicon-bubble"></i>
+          FAQ
+        </ion-item>
+        <ion-item menu-close ui-sref="app.about" class="ink item-icon-left ink">
+          <i class="icon lineicon lineicon-world"></i>
+          About
+        </ion-item>
+
+        <ion-item class="item-divider">
+          COLLECTIONS
+        </ion-item>
+
+        <div ng-repeat="x in categories">
+          <div class="mainmenu">
+              <ion-item nav-clear menu-close ui-sref="app.category({id: x.id, slug: x.slug, title: x.name})"
+                      ng-class="{active: isGroupShown(x)}" class="ink">
+              <span ng-bind-html="x.name"></span>
+              </ion-item>
+              <i ng-if="x.items.length>0" ng-click="toggleGroup(x)" class="icon-toggle" ng-class="isGroupShown(x) ? 'ion-ios-minus-outline' : 'ion-ios-plus-outline'"></i>
+          </div>
+          <div class="submenu" ng-if="x.items.length>0">
+            <ion-item ng-show="isGroupShown(x)" menu-close ng-repeat="y in x.items"
+                      class="item-accordion ink" ui-sref="app.category({id: y.id, slug: y.slug, title: y.name})">
+              <span ng-bind-html="y.name"></span>
+              <span class="pull-right">{{y.count}}</span>
+            </ion-item>
+          </div>
+        </div>
+      </ion-list>
+      <div class="appver">&copy; {{appname}} v{{appversion}} with <span class="fa fa-heart"></span> Ionic Premium</div>
+    </ion-content>
+  </ion-side-menu>
+</ion-side-menus>

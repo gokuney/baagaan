@@ -1,0 +1,11 @@
+<ion-view view-title="Thanks">
+	<ion-content class="padding thanks">
+        <span class="fa fa-thumbs-up fa-6"></span>
+        <h4>Congratulations!<br>Your order is successfull.</h4>
+        <p align="center">Your id order is <b>#{{id}}.</b><br>Your total order is <b>{{total | currency: currency:0 | trusted}}</b>.</p>
+        <p align="center" ng-if="payment=='paypal'">You have paid this order using PayPal.</p>
+        <p align="center" ng-if="payment=='bacs'">Please make a payment to our bank account as soon as possible.</p>
+				<p align="center" ng-if="payment=='cod'">Your order is on the way.</p>
+        <p><br><button class="button button-dark round" ui-sref="app.orders">Manage Orders</button></p>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,46 @@
+<ion-modal-view view-title="Login">
+  <div class="bar bar-header bar-dark item-input-inset padding">
+    <span class="icon ion-close-round" ng-click="closeModal()"></span>
+    <div class="title" align-title="center">
+      Login
+    </div>   
+  </div>
+  <ion-content class="has-header login-bg">
+  	<div class="hero">
+        <div class="content no-header">
+            <span class="logo"></span>
+        </div>
+    </div>
+    <form ng-submit="doLogin(frm)" novalidate="" name="frm">
+      <div class="list">
+          <div class="item-md-label" ng-show="message">
+              <div class="label-danger">{{message}}</div>
+          </div>
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Username</span>
+              <input type="text" placeholder="Username" ng-model="u.user" required>
+          </label>
+          <label class="item item-input item-floating-label">
+              <span class="input-label">Password</span>
+              <input type="password" placeholder="Password" ng-model="u.pass" required>
+          </label>
+
+          <label class="item-input item-md-label">
+            <button class="button button-full button-light ink round" ng-disabled="frm.$invalid">Login</button>
+          </label>
+
+          <div class="padding">
+            <div class="divider">
+              <div class="line left"></div>
+              <div class="line right"></div>
+              <div class="text">OR</div>
+            </div>
+          </div>
+
+          <label class="item-input item-md-label">
+            <button ng-click="closeModal()" ui-sref="app.register" class="button button-full button-energized ink round">Create an Account</button>
+          </label>
+      </div>
+    </form>
+  </ion-content>  
+</ion-modal-view>

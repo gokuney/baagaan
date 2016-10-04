@@ -1,0 +1,13 @@
+<ion-view view-title="Blog Detail">
+	<ion-content class="blog">
+		<div ng-if="data.thumbnail_images.full.url" class="featured img" style="background-image: url({{data.thumbnail_images.full.url}})"></div>
+		<div ng-if="!data.thumbnail_images.full.url" class="featured img" style="background-image: url(img/product.png)"></div>
+		<div class="padding" ng-if="data.title">
+			<h3 ng-bind-html="data.title"></h3>
+			<p>by {{data.author.name}} | <i class="icon ion-clock"></i> 
+                <time am-time-ago="data.date" title="{{ data.date | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time>
+            </p>
+			<p ng-bind-html="data.content"></p>
+		</div>
+	</ion-content>
+</ion-view>

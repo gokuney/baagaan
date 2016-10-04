@@ -1,0 +1,123 @@
+<ion-view view-title="Checkout" class="">
+<form ng-submit="doConfirm(frm)" novalidate="" name="frm">
+	<ion-content class="checkout">
+        <!-- <span ng-show="!user.isLogin">
+            <div class="item item-divider">
+               DATA PEMBELI
+            </div>
+            <div class="padding">
+                <label class="item item-input item-floating-label">
+                    <input type="text" autocomplete="off" class="form-control" name="name" placeholder="Name" required ng-model="user.name">
+                    <label for="email" class="control-label text-danger" ng-show="frm.name.$invalid && user.name!=''">
+                      <i class="icon ion-alert"></i>
+                      Name can't be empty
+                    </label>
+                </label>
+
+            </div>
+        </span> -->
+
+        <div class="item item-divider">
+           SHIPPPING ADDRESS
+        </div>
+        <div class="padding">
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="first_name" placeholder="First Name" required ng-model="ship.first_name">
+                <label class="control-label text-danger" ng-show="frm.first_name.$invalid && ship.first_name!=''">
+                  <i class="icon ion-alert"></i>
+                  First name can't be empty
+                </label>
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="last_name" placeholder="Last Name" required ng-model="ship.last_name">
+                <label class="control-label text-danger" ng-show="frm.last_name.$invalid && ship.last_name!=''">
+                  <i class="icon ion-alert"></i>
+                  Last name can't be empty
+                </label>
+            </label>
+            <label ng-show="!user.isLogin" class="item item-input item-floating-label">
+                <input type="email" autocomplete="off" class="form-control" name="email" placeholder="Email" required ng-model="user.email">
+                <label for="email" class="control-label text-danger" ng-show="frm.email.$invalid && billing.email!=''">
+                  <i class="icon ion-alert"></i>
+                  Email can't be empty
+                </label>
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="phone" placeholder="Phone" required ng-model="billing.phone">
+                <label for="phone" class="control-label text-danger" ng-show="frm.phone.$invalid && billing.phone!=''">
+                  <i class="icon ion-alert"></i>
+                  Phone can't be empty
+                </label>
+            </label>
+            <label ng-click="showCountry()" class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span ng-show="!ship.country">Country</span>
+                    <span ng-show="ship.country">
+                        {{tmp.country}}
+                    </span>
+                    <i class="icon ion-ios-arrow-forward"></i>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="address_1" placeholder="Street Address" required ng-model="ship.address_1">
+                <label class="control-label text-danger" ng-show="frm.address_1.$invalid && ship.address_1!=''">
+                  <i class="icon ion-alert"></i>
+                  Street address can't be empty
+                </label>
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="address_2" placeholder="Apartment, suit, unit etc. (optional)" ng-model="ship.address_2">
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="city" placeholder="Town/City" required ng-model="ship.city">
+                <label class="control-label text-danger" ng-show="frm.city.$invalid && ship.city!=''">
+                  <i class="icon ion-alert"></i>
+                  Town/city can't be empty
+                </label>
+            </label>
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="state" placeholder="State" required ng-model="ship.state">
+                <label class="control-label text-danger" ng-show="frm.state.$invalid && ship.state!=''">
+                  <i class="icon ion-alert"></i>
+                  State can't be empty
+                </label>
+            </label>
+
+
+            <label class="item item-input item-floating-label">
+                <input type="text" autocomplete="off" class="form-control" name="postcode" placeholder="Zip Code" required ng-model="ship.postcode">
+                <label for="postcode" class="control-label text-danger" ng-show="frm.postcode.$invalid && ship.postcode!=''">
+                  <i class="icon ion-alert"></i>
+                  Zipcode can't be empty
+                </label>
+            </label>
+
+            <label class="item item-input item-floating-label">
+                <textarea rows="3" autocomplete="off" class="form-control" name="note" placeholder="Note" ng-model="tmp.note"></textarea>
+            </label>
+        </div>
+
+        <div class="item item-divider">
+           SHIPPING METHOD
+        </div>
+        <ion-list>
+            <ion-radio ng-repeat="x in shipping" name="shipping_method" ng-click="setShip(x)">
+                <div>{{x.name}}</div>
+                <div><b>{{x.cost | currency: currency:0 | trusted}}<b/></div>
+            </ion-radio>
+        </ion-list>
+        <div class="item item-divider">
+           PAYMENT METHOD
+        </div>
+        <ion-list>
+            <ion-radio ng-repeat="x in payment" name="payment_method" ng-click="setPayment(x)">
+                <div><b>{{x.name}}</b> <i class="{{x.icon}}"></i></div>
+                <div>{{x.desc}}</div>
+            </ion-radio>
+        </ion-list>
+	</ion-content>
+	<ion-footer-bar>
+		<button class="button button-energized" ng-disabled="frm.$invalid || !ship.country || !shipping_lines[0].method_id || !payment_details.method_id">Confirm</button>
+	</ion-footer-bar>
+</form>
+</ion-view>

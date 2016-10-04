@@ -1,0 +1,41 @@
+<ion-view view-title="FAQ">
+	<ion-nav-buttons side="right">
+        <div class="cart-total ink" ui-sref="app.cart">
+            <div ng-if="totalCartItem>0">
+                <span>{{totalCartItem}}</span>
+            </div>
+            <button class="button ink button-icon button-clear fa fa-shopping-basket"></button>
+        </div>
+    </ion-nav-buttons>
+	<ion-content class="faq">
+		<ion-list>
+			<div>
+				<ion-item class="item-light" ng-click="toggleGroup(1)" ng-class="{active: isGroupShown(1)}">
+					<i class="icon" ng-class="isGroupShown(1) ? 'ion-minus' : 'ion-plus'"></i>
+					Dicit debitis at sed ? 
+				</ion-item>
+				<div class="item-accordion padding" ng-show="isGroupShown(1)">
+					<p>Movet apeirian verterem eu quo, vix elit voluptatum te, has ea solum viris audiam. Mel ex suas fugit altera. Amet soluta quo id, hinc adhuc alterum nam ad. Qui in natum laudem fabulas.</p>
+				</div>
+			</div>
+			<div>
+				<ion-item class="item-light" ng-click="toggleGroup(2)" ng-class="{active: isGroupShown(2)}">
+					<i class="icon" ng-class="isGroupShown(2) ? 'ion-minus' : 'ion-plus'"></i>
+					Dicit debitis at sed ? 
+				</ion-item>
+				<div class="item-accordion padding" ng-show="isGroupShown(2)">
+					<p>Movet apeirian verterem eu quo, vix elit voluptatum te, has ea solum viris audiam. Mel ex suas fugit altera. Amet soluta quo id, hinc adhuc alterum nam ad. Qui in natum laudem fabulas.</p>
+				</div>
+			</div>
+			<div>
+				<ion-item class="item-light" ng-click="toggleGroup(3)" ng-class="{active: isGroupShown(3)}">
+					<i class="icon" ng-class="isGroupShown(3) ? 'ion-minus' : 'ion-plus'"></i>
+					Dicit debitis at sed ? 
+				</ion-item>
+				<div class="item-accordion padding" ng-show="isGroupShown(3)">
+					<p>Movet apeirian verterem eu quo, vix elit voluptatum te, has ea solum viris audiam. Mel ex suas fugit altera. Amet soluta quo id, hinc adhuc alterum nam ad. Qui in natum laudem fabulas.</p>
+				</div>
+			</div>
+		</ion-list>
+	</ion-content>
+</ion-view>

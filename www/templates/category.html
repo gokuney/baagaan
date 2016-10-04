@@ -1,0 +1,39 @@
+<ion-view view-title="{{title}}">
+	<ion-nav-buttons side="right">
+        <div class="cart-total ink" ui-sref="app.cart">
+            <div ng-if="totalCartItem>0">
+                <span>{{totalCartItem}}</span>
+            </div>
+            <button class="button ink button-icon button-clear fa fa-shopping-basket"></button>
+        </div>
+    </ion-nav-buttons>
+
+	<ion-content class="home" overflow-scroll="true">
+		<ion-refresher
+            on-refresh="doRefresh()">
+        </ion-refresher>
+        <div class="row grid" ng-repeat="x in products track by $index" ng-if="$index%2==0">
+            <div class="col col-50 ink item" ng-if="$index < products.length" ui-sref="app.product({id: products[$index].id})">
+								<ion-spinner class="onload"></ion-spinner>
+								<div ng-if="products[$index].featured_src" class="img" style="background-image: url({{products[$index].featured_src}})"></div>
+                <div ng-if="!products[$index].featured_src" class="img" style="background-image: url(img/product.png)"></div>
+                <div class="info">
+                    <h3>{{products[$index].title}}</h3>
+                    <span>{{products[$index].price | currency:currency:0 | trusted}}</span>
+                    <del ng-show="products[$index].regular_price > 0 && products[$index].on_sale">{{products[$index].regular_price | currency: currency:0 | trusted}}</del>
+                </div>
+            </div>
+            <div class="col col-50 ink item" ng-if="$index+1 < products.length" ui-sref="app.product({id: products[$index+1].id})">
+								<ion-spinner class="onload"></ion-spinner>
+								<div ng-if="products[$index+1].featured_src" class="img" style="background-image: url({{products[$index+1].featured_src}})"></div>
+                <div ng-if="!products[$index+1].featured_src" class="img" style="background-image: url(img/product.png)"></div>
+                <div class="info">
+                    <h3>{{products[$index+1].title}}</h3>
+                    <span>{{products[$index+1].price | currency: currency:0 | trusted}}</span>
+                    <del ng-show="products[$index+1].regular_price > 0 && products[$index+1].on_sale">{{products[$index+1].regular_price | currency: currency:0 | trusted}}</del>
+                </div>
+            </div>
+        </div>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="10%" ng-if="more"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

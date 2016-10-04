@@ -1,0 +1,30 @@
+<ion-view view-title="Wishlist">
+    <ion-nav-buttons side="right">
+        <button ng-show="wish && wish.length>0" class="button button-icon button-clear ion-trash-a" ng-click="data.showDelete = !data.showDelete; "></button>
+    </ion-nav-buttons>
+	<ion-content class="cart" overflow-scroll="true">
+        <div ng-if="wish.length==0" class="empty">
+            <i class="icon ion-sad-outline"></i>
+            <h3>Wishlist is empty</h3>
+            <button class="button button-dark round" ui-sref="app.dash">Let's shopping</button>
+        </div>
+        <ion-list show-delete="data.showDelete" can-swipe="true">
+            <ion-item ng-if="wish.length>0" ng-repeat="x in wish track by $index" class="item item-thumbnail-left">
+                <div ng-if="x.img" class="img" style="background-image: url({{x.img}})" ui-sref="app.product({id: x.id})"></div>
+                <div ng-if="!x.img" class="img" style="background-image: url(img/product.png)" ui-sref="app.product({id: x.id})"></div>
+                <div class="cart-detail">
+                    <h3>{{x.title}}</h3>
+                    <div class="price">
+                        {{x.price | currency: currency:0 | trusted}}
+                    </div>
+                    <div class="row">
+                        <span class="">
+                            <button class="button button-dark button-small" ui-sref="app.product({id: x.id})">Product Detail</button>
+                        </span>
+                    </div>
+                </div>
+                <ion-delete-button class="ion-trash-a" ng-click="removeWish($index, x);"></ion-delete-button>
+            </ion-item>
+        </ion-list>
+	</ion-content>
+</ion-view>

@@ -1,0 +1,31 @@
+<ion-view class="quicksearch checkout">
+	<div class="item-input-inset bar-header">
+	  <label class="item-input-wrapper">
+	    	<i class="icon ion-ios-search placeholder-icon"></i>
+	    	<input focusMe type="search" placeholder="Search ..." ng-model="pro" ng-init="pro==''">
+	  		<i ng-if="pro!=''" class="icon ion-close-circled placeholder-icon" on-touch="clearSearch()"></i>
+	  </label>
+	  <!-- <input type="submit" name="submit" style="display: none;" /> -->
+	  <button class="button button-light button-small button-clear" ng-click="$ionicGoBack()">
+	  	Cancel
+	  </button>
+	</div>
+	<ion-content class="has-header" overflow-scroll="true" on-swipe-up="onSwipe();" on-swipe-down="onSwipe();">
+		<div ng-if="pro==''" class="empty">
+            <i class="icon ion-ios-search-strong"></i>
+            <h3>Type your search</h3>
+        </div>
+        <div class="item item-divider" ng-if="pro!=''">
+           SEARCH RESULTS: "{{pro}}"
+        </div>
+        <div class="padding" ng-if="pro!=''">
+			<label class="item item-input item-floating-label item-icon-right item-icon-left" ng-repeat="x in dataSearch | filter: pro" ui-sref="app.product({id: x.id})" ng-click="closeModal()">
+				<div class="form-control">
+                    {{x.title}}
+                    <i class="icon ion-ios-arrow-right"></i>
+                </ion-item>
+			</label>
+		</div>
+		<ion-infinite-scroll on-infinite="loadMore()" distance="10%" ng-if="more"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

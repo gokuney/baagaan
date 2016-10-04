@@ -1,0 +1,35 @@
+<ion-view view-title="Contact">
+  <ion-nav-buttons side="right">
+        <div class="cart-total ink" ui-sref="app.cart">
+            <div ng-if="totalCartItem>0">
+                <span>{{totalCartItem}}</span>
+            </div>
+            <button class="button ink button-icon button-clear fa fa-shopping-basket"></button>
+        </div>
+    </ion-nav-buttons>
+  <ion-content class="contact" scroll="false">
+  	<div class="hero">
+        <div class="content no-header">
+            <span class="logo"></span>
+        </div>
+    </div>
+    <h3>Hi!</h3>
+    <h4>We are ready to help you.</h4>
+    <p><b>Our service hour is</b><br>
+    	Monday-Friday (9am - 4pm)<br>Saturday-Sunday (12pm - 4pm)</p>
+    <div class="row padding">
+      <div class="col col-50 ink">
+          <div class="call">
+            <a href="tel:+6281123456"><i class="icon ion-android-call"></i></a>
+          </div>
+          <span>Call Us</span>
+      </div>
+      <div class="col col-50 ink" ng-click="email();">
+          <div class="call">
+            <i class="icon ion-email"></i>
+          </div>
+          <span>Send Email</span>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,20 @@
+<ion-view view-title="My Orders">
+  <ion-nav-buttons side="right">
+        <button ng-click="doRefresh()" class="button button-icon button-clear ion-refresh"></button>
+    </ion-nav-buttons>
+  <ion-content class="orders">
+    <div ng-if="orders && orders.length==0" class="empty">
+        <i class="icon ion-sad-outline"></i>
+        <h3>Order is empty</h3>
+        <button class="button button-dark round" ui-sref="app.dash">Let's shopping</button>
+    </div>
+    <ion-list class="cart">
+      <ion-item ng-repeat="x in orders" class="item item-icon-right ink" ui-sref="app.order-detail({id: x.id})">
+        <h2><b>#{{x.id}}</b> &mdash; {{x.created_at | date:'dd/MM/yyyy'}}</h2>
+        <p>{{x.total | currency: currency:0 | trusted}} &mdash; {{x.line_items.length}} items</p>
+        <h2 class="dark"><b>{{x.status}}</b></h2>
+        <i class="icon ion-ios-arrow-forward"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

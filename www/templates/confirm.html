@@ -1,0 +1,63 @@
+<ion-view view-title="Confirmation">
+	<ion-content class="checkout">
+		<div class="item item-divider">
+		  SUMMARY
+		</div>
+		<div class="padding">
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>Payment Method</span>
+                    <span class="pull-right">
+                        {{paymentmethod}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>Shipping Method</span>
+                    <span class="pull-right" ng-bind-html="shipmethod">
+                    </span>
+                </div>
+            </label>
+			<label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>Subtotal</span>
+                    <span class="pull-right">
+                        {{subtotal | currency: currency:0 | trusted}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control">
+                    <span>Shipping Cost</span>
+                    <span class="pull-right">
+                    	{{shipcost | currency: currency:0 | trusted}}
+                    </span>
+                </div>
+            </label>
+            <label class="item item-input item-floating-label item-icon-right">
+                <div class="form-control subtotal">
+                    <span><b>TOTAL</b></span>
+                    <span class="pull-right">
+                    	{{total | currency: currency:0 | trusted}}
+                    </span>
+                </div>
+            </label>
+        </div>
+        <div class="item item-divider">
+		   PAYMENT POLICY
+		</div>
+		<div class="padding rules">
+			<ul>
+				<li>Lorem ipsum dolor sit amet, ad case inani veritus sea, at debitis vituperata per. Usu at quem impedit voluptua. Ubique alterum no mei.</li>
+				<li>Lorem ipsum dolor sit amet, ad case inani veritus sea, at debitis vituperata per. Usu at quem impedit voluptua. Ubique alterum no mei.</li>
+                <li>Lorem ipsum dolor sit amet, ad case inani veritus sea, at debitis vituperata per. Usu at quem impedit voluptua. Ubique alterum no mei.</li>
+			</ul>
+		</div>
+	</ion-content>
+	<ion-footer-bar>
+		<button class="button button-energized ion-ios-locked" ng-click="createOrder();">
+            Pay {{total | currency:$scope.currency:0 | trusted}}
+        </button>
+	</ion-footer-bar>
+</ion-view>

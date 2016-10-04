@@ -1,0 +1,21 @@
+<ion-modal-view class="checkout">
+	<div class="item-input-inset bar-header">
+	  <label class="item-input-wrapper">
+	    <i class="icon ion-ios-search placeholder-icon"></i>
+	    <input type="search" placeholder="Country" ng-model="pro">
+	  </label>
+	  <button class="button button-light button-small button-clear" ng-click="closeModal()">
+        Close
+      </button>
+	</div>
+	<ion-content class="has-header">
+		<div class="padding">
+			<label class="item item-input item-floating-label item-icon-right"  ng-repeat="x in countries | filter: pro track by $index" ng-click="setCountry(x);">
+				<div class="form-control">
+                    {{x.name}}
+                    <i class="icon ion-ios-arrow-right"></i>
+                </div>				
+			</label>
+		</div>	
+	</ion-content>
+</ion-modal-view>

@@ -1,0 +1,32 @@
+<ion-view view-title="Blog">
+    <ion-nav-buttons side="right">
+        <div class="cart-total ink" ui-sref="app.cart">
+            <div ng-if="totalCartItem>0">
+                <span>{{totalCartItem}}</span>
+            </div>
+            <button class="button ink button-icon button-clear fa fa-shopping-basket"></button>
+        </div>
+    </ion-nav-buttons>
+	<ion-content class="blog" overflow-scroll="true">
+    <ion-refresher
+        on-refresh="doRefresh()">
+    </ion-refresher>
+    <div ng-if="blog && blog.length==0" class="empty">
+        <i class="icon ion-sad-outline"></i>
+        <h3>Blog is empty</h3>
+        <button class="button button-dark round" ui-sref="app.dash">Let's shopping</button>
+    </div>
+		<ion-list>
+            <ion-item ng-repeat="x in blog" class="item item item-thumbnail-left" ui-sref="app.blog-detail({id: x.id})">
+                <img ng-if="!x.thumbnail_images.thumbnail.url" src="img/product.png">
+                <img ng-if="x.thumbnail_images.thumbnail.url" ng-src="{{x.thumbnail_images.thumbnail.url}}">
+                <h2 ng-bind-html="x.title"></h2>
+                <p>by {{x.author.name}}</p>
+                <div class="time">
+                    <i class="icon ion-clock"></i> <time am-time-ago="x.date" title="{{ x.date | amDateFormat: 'dddd, MMMM Do YYYY, h:mm a' }}"></time>
+                </div>
+            </ion-item>
+        </ion-list>
+        <ion-infinite-scroll on-infinite="loadMore()" distance="10%" ng-if="more"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

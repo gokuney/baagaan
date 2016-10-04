@@ -1,0 +1,66 @@
+<ion-view class="search">
+  <div class="bar-positive bar bar-header item-input-inset">
+    <div class="buttons buttons-left header-item">
+        <span class="left-buttons">
+            <button class="button button-icon button-clear ion-arrow-left-c" ui-sref="app.home"></button>
+        </span>
+    </div>
+    <form ng-submit="search()">
+    <label class="item-input-wrapper" focus-me>
+      <i class="icon ion-ios-search placeholder-icon"></i>
+      <input type="search" focus-me placeholder="Cari produk ..." ng-model="search.q" ng-init="search.q=''">
+    </label>
+    <button class="button button-clear button-small" type="submit" ng-disabled="search.q==''">
+        Cari
+    </button>
+    </form>
+  </div>
+  <ion-content class="home has-header" overflow-scroll="true" scroll-to-top="150" delegate-handle="scroller">
+    <div ng-if="data.length==0" class="case-null">
+        <i class="icon ion-sad-outline"></i>
+        <h3>Pencarian kosong</h3>
+    </div>
+    <div class="row"  ng-repeat="x in data" ng-if="$index%2==0">
+        <div class="col col-50 ink item" ng-if="$index < data.length">
+            <div class="product" ng-if="data[$index].id" ui-sref="app.product({id: data[$index].id})">
+                <div ng-if="!data[$index].in_stock" class="badge-wrap">
+                    <span class="out-of-stock-badge">Sold out</span>
+                </div>
+                <ion-spinner icon="android" class="spinner-positive"></ion-spinner>
+                <div ng-if="data[$index].featured_src" class="img" style="background-image: url({{data[$index].featured_src}})"></div>
+                <div ng-if="!data[$index].featured_src" class="img" style="background-image: url(img/product.png)"></div>
+                <div class="attr">
+                    <span class="title">{{data[$index].title}}</span>
+                    <del ng-show="data[$index].regular_price > 0">{{data[$index].regular_price | currency: "IDR ":0}}</del>
+                    <span class="price">{{data[$index].price | currency: "IDR ":0}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="col col-50 ink item" ng-if="$index+1 < data.length">
+            <div class="product" ng-if="data[$index+1].id" ui-sref="app.product({id: data[$index+1].id})">
+                <div ng-if="!data[$index+1].in_stock" class="badge-wrap">
+                    <span class="out-of-stock-badge">Sold out</span>
+                </div>
+                <ion-spinner icon="android" class="spinner-positive"></ion-spinner>
+                <div ng-if="data[$index+1].featured_src" class="img" style="background-image: url({{data[$index+1].featured_src}})"></div>
+                <div ng-if="!data[$index+1].featured_src" class="img" style="background-image: url(img/product.png)"></div>
+                <div class="attr">
+                    <span class="title">{{data[$index+1].title}}</span>
+                    <del ng-show="data[$index+1].regular_price > 0">{{data[$index+1].regular_price | currency: "IDR ":0}}</del>
+                    <span class="price">{{data[$index+1].price | currency: "IDR ":0}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ion-infinite-scroll on-infinite="loadMore()" distance="10%" ng-if="more"></ion-infinite-scroll>
+  </ion-content>
+  <scroll-to-top-button animate="true">
+        <div class="float-button">
+            <span class="height-fix">
+                <a class="content">
+                    <i class="ion-ios-arrow-up"> </i>
+                </a>
+            </span>
+        </div>
+    </scroll-to-top-button>
+</ion-view>

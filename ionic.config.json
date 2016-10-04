@@ -1,0 +1,11 @@
+{
+  "name": "ionshop",
+  "app_id": "db578258",
+  "browsers": [
+    {
+      "platform": "android",
+      "browser": "crosswalk-lite",
+      "version": "12.41.296.5"
+    }
+  ]
+}
